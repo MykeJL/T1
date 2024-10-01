@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import firebaseConfig from './config.js';
 
 // Initialize Firebase

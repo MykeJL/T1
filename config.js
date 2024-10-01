@@ -1,11 +1,11 @@
 // config.js
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID
+    apiKey: "AIzaSyCgB8i2HgfTy3I-Mwb7Wk7heGD2l83eZyc",
+    authDomain: "mdata-42fa6.firebaseapp.com",
+    projectId: "mdata-42fa6",
+    storageBucket: "mdata-42fa6.appspot.com",
+    messagingSenderId: "524100858912",
+    appId: "1:524100858912:web:55c20c4248533a5e387845"
   };
   
   export default firebaseConfig;
