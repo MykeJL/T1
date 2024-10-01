@@ -20,6 +20,8 @@ body {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+    overflow: auto; /* Allow scrolling if content exceeds */
+    box-sizing: border-box; /* Include padding in total width/height */
 }
 
 h1 {
@@ -82,9 +84,14 @@ a:hover {
         font-size: 1.2rem;
     }
 
-    input, button {
+    input, button, select {
         padding: 0.65rem;
         font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+        max-width: 95%; /* Allow more width on smaller devices */
     }
 }
 
@@ -98,4 +105,3 @@ select {
     font-size: 1rem;
     background-color: #f9f9f9;
 }
-
