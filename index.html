@@ -8,22 +8,58 @@
 </head>
 <body>
     <div class="container">
-        <h1>Student Character Creator</h1>
+        <h1>🌟 Student Character Creator 🌟</h1>
+
+        <!-- Login Form -->
         <div id="loginForm">
             <h2>Login</h2>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="username" placeholder="Enter your Username" required>
+            <input type="password" id="password" placeholder="Enter your Password" required>
             <button id="loginButton">Login</button>
             <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
         </div>
+
+        <!-- Signup Form -->
         <div id="signupForm" style="display: none;">
             <h2>Sign Up</h2>
-            <input type="text" id="signupUsername" placeholder="Username" required>
-            <input type="password" id="signupPassword" placeholder="Password" required>
+            <input type="text" id="signupUsername" placeholder="Choose a Username" required>
+            <input type="password" id="signupPassword" placeholder="Choose a Password" required>
+
+            <!-- New Dropdowns and Text Fields -->
+            <label for="classSelection">What class are you in?</label>
+            <select id="classSelection" required>
+                <option value="A2">A2 (2024-2025)</option>
+                <option value="B2">B2 (2024-2025)</option>
+                <option value="C1+">C1+ (2024-2025)</option>
+            </select>
+
+            <label for="bestSkill">Where in English are you the best?</label>
+            <select id="bestSkill" required>
+                <option value="Reading">Reading</option>
+                <option value="Writing">Writing</option>
+                <option value="Speaking">Speaking</option>
+                <option value="Listening">Listening</option>
+                <option value="Grammar">Grammar</option>
+                <option value="Vocabulary">Vocabulary</option>
+            </select>
+
+            <label for="improveSkill">Where do you want to improve the most?</label>
+            <select id="improveSkill" required>
+                <option value="Reading">Reading</option>
+                <option value="Writing">Writing</option>
+                <option value="Speaking">Speaking</option>
+                <option value="Listening">Listening</option>
+                <option value="Grammar">Grammar</option>
+                <option value="Vocabulary">Vocabulary</option>
+            </select>
+
+            <input type="text" id="firstNameLastInitial" placeholder="First name and initial (e.g., Ivan I.)" required>
+
             <button id="signupButton">Sign Up</button>
             <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
         </div>
     </div>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script type="module" src="config.js"></script>

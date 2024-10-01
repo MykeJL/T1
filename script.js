@@ -26,14 +26,6 @@ showLogin.addEventListener('click', (e) => {
     loginForm.style.display = 'block';
 });
 
-// Input validation
-function isValidUsername(username) {
-    return /^[a-zA-Z0-9_]{3,20}$/.test(username);
-}
-
-function isValidPassword(password) {
-    return password.length >= 6;
-}
 
 // Login
 loginButton.addEventListener('click', () => {
@@ -63,13 +55,27 @@ loginButton.addEventListener('click', () => {
         });
 });
 
+
+// Input validation
+function isValidUsername(username) {
+    return /^[a-zA-Z0-9_]{3,20}$/.test(username);
+}
+
+function isValidPassword(password) {
+    return password.length >= 6;
+}
+
 // Signup
 signupButton.addEventListener('click', () => {
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
+    const classSelection = document.getElementById('classSelection').value;
+    const bestSkill = document.getElementById('bestSkill').value;
+    const improveSkill = document.getElementById('improveSkill').value;
+    const firstNameLastInitial = document.getElementById('firstNameLastInitial').value;
 
     if (!isValidUsername(username) || !isValidPassword(password)) {
-        alert("Invalid username or password format. Username should be 3-20 characters long and contain only letters, numbers, and underscores. Password should be at least 6 characters long.");
+        alert("Invalid username or password format.");
         return;
     }
 
@@ -80,10 +86,14 @@ signupButton.addEventListener('click', () => {
                 throw new Error('Username already exists');
             }
 
-            // Username is available, create a new user
+            // Add user data to Firestore with new fields
             return db.collection('users').add({
                 username: username,
-                password: password
+                password: password,
+                class: classSelection,
+                bestSkill: bestSkill,
+                improveSkill: improveSkill,
+                name: firstNameLastInitial
             });
         })
         .then((docRef) => {
@@ -100,22 +110,3 @@ signupButton.addEventListener('click', () => {
             alert("Signup failed: " + error.message);
         });
 });
-
-// Initialize user state
-let currentUser = null;
-
-// Function to check login state
-function checkLoginState() {
-    const userString = localStorage.getItem('currentUser');
-    if (userString) {
-        currentUser = JSON.parse(userString);
-        console.log("User is logged in:", currentUser);
-        // You can redirect to the character creation page or dashboard here
-        // window.location.href = "dashboard.html";
-    } else {
-        console.log("No user is logged in");
-    }
-}
-
-// Call this function when the page loads
-checkLoginState();
