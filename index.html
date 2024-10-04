@@ -22,13 +22,13 @@
             <h2>Sign Up</h2>
             <input type="text" id="signupUsername" placeholder="Username" required>
             <input type="password" id="signupPassword" placeholder="Password" required>
-            <select id="classSelection">
+            <select id="classSelection" required>
                 <option value="">Select Class</option>
                 <option value="A2">A2 (2024-2025)</option>
                 <option value="B2">B2 (2024-2025)</option>
                 <option value="C1+">C1+ (2024-2025)</option>
             </select>
-            <select id="bestSkill">
+            <select id="bestSkill" required>
                 <option value="">Best Skill</option>
                 <option value="Reading">Reading</option>
                 <option value="Writing">Writing</option>
@@ -37,7 +37,7 @@
                 <option value="Grammar">Grammar</option>
                 <option value="Vocabulary">Vocabulary</option>
             </select>
-            <select id="improveSkill">
+            <select id="improveSkill" required>
                 <option value="">Skill to Improve</option>
                 <option value="Reading">Reading</option>
                 <option value="Writing">Writing</option>
@@ -49,115 +49,63 @@
             <input type="text" id="firstNameLastInitial" placeholder="First Name & Last Initial (e.g., Ivan I.)" required>
 
             <h3>Create Your Character</h3>
-            <div>
-                <label for="shapeSelect">Choose a Shape:</label>
-                <select id="shapeSelect">
-                    <option value="Square">Square</option>
-                    <option value="Triangle">Triangle</option>
-                    <option value="Circle">Circle</option>
-                    <option value="Pentagon">Pentagon</option>
-                    <option value="Hexagon">Hexagon</option>
-                </select>
-            </div>
-            <div>
-                <label for="colorSelect">Choose a Color:</label>
-                <select id="colorSelect">
-                    <option value="Red">Red</option>
-                    <option value="Green">Green</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Orange">Orange</option>
-                </select>
-            </div>
-            <div>
-                <label for="emojiSelect">Choose an Emoji:</label>
-                <select id="emojiSelect">
-                    <option value="😀">Smiley</option>
-                    <option value="😢">Sad</option>
-                    <option value="😐">Neutral</option>
-                    <option value="😉">Winky</option>
-                    <option value="😮">Surprised</option>
-                </select>
-            </div>
-            <div>
-                <label for="hairSelect">Choose Hair Type:</label>
-                <select id="hairSelect">
-                    <option value="Long">Long</option>
-                    <option value="Short">Short</option>
-                </select>
-            </div>
-            <div>
-                <label for="hairColorSelect">Choose Hair Color:</label>
-                <select id="hairColorSelect">
-                    <option value="Red">Red</option>
-                    <option value="Green">Green</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Orange">Orange</option>
-                </select>
+            <div id="characterCreator">
+                <div>
+                    <label for="shapeSelect">Choose a Shape:</label>
+                    <select id="shapeSelect" required>
+                        <option value="Square">Square</option>
+                        <option value="Triangle">Triangle</option>
+                        <option value="Circle">Circle</option>
+                        <option value="Pentagon">Pentagon</option>
+                        <option value="Hexagon">Hexagon</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="colorSelect">Choose a Color:</label>
+                    <select id="colorSelect" required>
+                        <option value="Red">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Orange">Orange</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="emojiSelect">Choose an Emoji:</label>
+                    <select id="emojiSelect" required>
+                        <option value="😀">Smiley</option>
+                        <option value="😢">Sad</option>
+                        <option value="😐">Neutral</option>
+                        <option value="😉">Winky</option>
+                        <option value="😮">Surprised</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="hairSelect">Choose Hair Type:</label>
+                    <select id="hairSelect" required>
+                        <option value="Long">Long</option>
+                        <option value="Short">Short</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="hairColorSelect">Choose Hair Color:</label>
+                    <select id="hairColorSelect" required>
+                        <option value="Red">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Orange">Orange</option>
+                    </select>
+                </div>
+                
+                <!-- Canvas for character preview -->
+                <canvas id="characterPreview" width="200" height="200" style="border: 1px solid #ddd; margin-top: 20px;"></canvas>
             </div>
             
             <button id="signupButton">Sign Up</button>
             <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
-        </div>
-
-        <div id="characterCreator" style="display: none;">
-            <h2>Create Your Character</h2>
-            <div>
-                <label for="shape">Choose a Shape:</label>
-                <select id="shapeSelectPreview">
-                    <option value="Square">Square</option>
-                    <option value="Triangle">Triangle</option>
-                    <option value="Circle">Circle</option>
-                    <option value="Pentagon">Pentagon</option>
-                    <option value="Hexagon">Hexagon</option>
-                </select>
-            </div>
-            <div>
-                <label for="color">Choose a Color:</label>
-                <select id="colorSelectPreview">
-                    <option value="Red">Red</option>
-                    <option value="Green">Green</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Orange">Orange</option>
-                </select>
-            </div>
-            <div>
-                <label for="emoji">Choose an Emoji:</label>
-                <select id="emojiSelectPreview">
-                    <option value="😀">Smiley</option>
-                    <option value="😢">Sad</option>
-                    <option value="😐">Neutral</option>
-                    <option value="😉">Winky</option>
-                    <option value="😮">Surprised</option>
-                </select>
-            </div>
-            <div>
-                <label for="hair">Choose Hair Type:</label>
-                <select id="hairSelectPreview">
-                    <option value="Long">Long</option>
-                    <option value="Short">Short</option>
-                </select>
-            </div>
-            <div>
-                <label for="hairColor">Choose Hair Color:</label>
-                <select id="hairColorSelectPreview">
-                    <option value="Red">Red</option>
-                    <option value="Green">Green</option>
-                    <option value="Blue">Blue</option>
-                    <option value="Yellow">Yellow</option>
-                    <option value="Purple">Purple</option>
-                    <option value="Orange">Orange</option>
-                </select>
-            </div>
-            <button id="saveCharacterButton">Save Character</button>
-
-            <!-- Canvas for character preview -->
-            <canvas id="characterPreview" width="200" height="200" style="border: 1px solid #ddd; margin-top: 20px;"></canvas>
         </div>
     </div>
 

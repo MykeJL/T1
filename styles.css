@@ -21,6 +21,8 @@ body {
     max-width: 400px;
     margin: 0 auto;
     overflow: auto; /* Allow scrolling if content exceeds */
+    max-height: 90vh; /* Limit height to 90% of viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
     box-sizing: border-box; /* Include padding in total width/height */
 }
 
@@ -76,6 +78,11 @@ a:hover {
 
 /* Add media queries for mobile responsiveness */
 @media (max-width: 600px) {
+    body {
+        align-items: flex-start; /* Align to top on mobile */
+        padding: 20px 0; /* Add some padding to top and bottom */
+    }
+
     h1 {
         font-size: 1.6rem;
     }
@@ -90,8 +97,15 @@ a:hover {
     }
 
     .container {
-        padding: 1.5rem; /* Adjust padding for smaller screens */
-        max-width: 95%; /* Allow more width on smaller devices */
+        max-height: none; /* Remove max-height on mobile */
+        height: auto; /* Allow container to grow based on content */
+        margin: 20px auto; /* Add margin to top and bottom */
+    }
+
+    #signupForm {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Add some space between form elements */
     }
 }
 

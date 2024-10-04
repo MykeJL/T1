@@ -13,86 +13,19 @@ const showLogin = document.getElementById('showLogin');
 const characterPreviewCanvas = document.getElementById('characterPreview');
 const ctx = characterPreviewCanvas.getContext('2d');
 
-// Initialize character creator after DOM is loaded
+// Initialize character creator
 document.addEventListener('DOMContentLoaded', () => {
-    // Get character creator elements inside this function
-    const shapeSelect = document.getElementById('shapeSelectPreview');
-    const colorSelect = document.getElementById('colorSelectPreview');
-    const emojiSelect = document.getElementById('emojiSelectPreview');
-    const hairSelect = document.getElementById('hairSelectPreview');
-    const hairColorSelect = document.getElementById('hairColorSelectPreview');
+    const characterPreviewCanvas = document.getElementById('characterPreview');
+    const shapeSelect = document.getElementById('shapeSelect');
+    const colorSelect = document.getElementById('colorSelect');
+    const emojiSelect = document.getElementById('emojiSelect');
+    const hairSelect = document.getElementById('hairSelect');
+    const hairColorSelect = document.getElementById('hairColorSelect');
 
-    // Initialize character creator
     initializeCharacterCreator(characterPreviewCanvas, shapeSelect, colorSelect, emojiSelect, hairSelect, hairColorSelect);
-
-    // Event listeners for updates
-    shapeSelect.addEventListener('change', updateCharacterPreview);
-    colorSelect.addEventListener('change', updateCharacterPreview);
-    emojiSelect.addEventListener('change', updateCharacterPreview);
-    hairSelect.addEventListener('change', updateCharacterPreview);
-    hairColorSelect.addEventListener('change', updateCharacterPreview);
-
-    // Function to update character preview
-    function updateCharacterPreview() {
-        const shape = shapeSelect.value;
-        const color = colorSelect.value;
-
-        // Clear canvas
-        ctx.clearRect(0, 0, characterPreviewCanvas.width, characterPreviewCanvas.height);
-
-        // Draw the selected shape
-        ctx.fillStyle = color;
-        ctx.beginPath();
-
-        switch (shape) {
-            case 'Square':
-                ctx.fillRect(50, 50, 100, 100);
-                break;
-            case 'Circle':
-                ctx.arc(100, 100, 50, 0, Math.PI * 2);
-                ctx.fill();
-                break;
-            case 'Triangle':
-                ctx.moveTo(100, 50);
-                ctx.lineTo(150, 150);
-                ctx.lineTo(50, 150);
-                ctx.closePath();
-                ctx.fill();
-                break;
-            case 'Pentagon':
-                drawPolygon(ctx, 5, 100, 100, 50);
-                break;
-            case 'Hexagon':
-                drawPolygon(ctx, 6, 100, 100, 50);
-                break;
-        }
-
-        // Draw emoji in the center
-        const emoji = emojiSelect.value;
-        ctx.font = '40px Arial';
-        ctx.fillText(emoji, 85, 120);
-
-        // Draw hair
-        const hairType = hairSelect.value;
-        ctx.fillStyle = hairColorSelect.value;
-        if (hairType === 'Long') {
-            ctx.fillRect(70, 20, 60, 30); // Long hair
-        } else {
-            ctx.fillRect(85, 20, 30, 15); // Short hair
-        }
-    }
 });
 
-// Function to draw polygons
-function drawPolygon(ctx, sides, x, y, radius) {
-    const angle = (Math.PI * 2) / sides;
-    ctx.moveTo(x + radius * Math.cos(0), y + radius * Math.sin(0));
-    for (let i = 1; i < sides; i++) {
-        ctx.lineTo(x + radius * Math.cos(i * angle), y + radius * Math.sin(i * angle));
-    }
-    ctx.closePath();
-    ctx.fill();
-}
+
 
 // Show signup form
 showSignup.addEventListener('click', (e) => {
@@ -154,8 +87,40 @@ function isValidPassword(password) {
     return password.length >= 6;
 }
 
+function validateSignupForm() {
+    const requiredFields = [
+        'signupUsername',
+        'signupPassword',
+        'classSelection',
+        'bestSkill',
+        'improveSkill',
+        'firstNameLastInitial',
+        'shapeSelect',
+        'colorSelect',
+        'emojiSelect',
+        'hairSelect',
+        'hairColorSelect'
+    ];
+
+    for (const fieldId of requiredFields) {
+        const field = document.getElementById(fieldId);
+        if (!field.value) {
+            alert(`Please fill in all required fields. ${field.placeholder || field.id} is missing.`);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Signup
-signupButton.addEventListener('click', () => {
+signupButton.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (!validateSignupForm()) {
+        return; // Stop if validation fails
+    }
+
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
     const classSelection = document.getElementById('classSelection').value;
@@ -165,11 +130,11 @@ signupButton.addEventListener('click', () => {
 
     // Collect character data for saving
     const characterData = {
-        shape: document.getElementById('shapeSelectPreview').value,
-        color: document.getElementById('colorSelectPreview').value,
-        emoji: document.getElementById('emojiSelectPreview').value,
-        hair: document.getElementById('hairSelectPreview').value,
-        hairColor: document.getElementById('hairColorSelectPreview').value,
+        shape: document.getElementById('shapeSelect').value,
+        color: document.getElementById('colorSelect').value,
+        emoji: document.getElementById('emojiSelect').value,
+        hair: document.getElementById('hairSelect').value,
+        hairColor: document.getElementById('hairColorSelect').value,
     };
 
     if (!isValidUsername(username) || !isValidPassword(password)) {
